@@ -7,7 +7,7 @@ public class View {
     public static final String INTERVAL = "The number you try to guess lies between ";
     public static final String AND = " and ";
     public static final String PREVIOUS_GUESS = "The number you tried a last time was ";
-    public static final String CONGRATULATE = " Congratulations! You have guessed a number ";
+    public static final String CONGRATULATE = "Congratulations! You have guessed a number ";
 
 
     public void printMessage(String message){
