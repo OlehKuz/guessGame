@@ -4,7 +4,8 @@ public class Model {
     public static final int RAND_MAX = 100;
     private int min;
     private int max;
-    private int guessed;
+    private int randomlyGuessed;
+    private String numberILookFor;
     private ArrayList<Integer> guessesBefore = new ArrayList<Integer>();
 
 
@@ -17,9 +18,23 @@ public class Model {
         return rand(0,RAND_MAX);
     }
 
-    public void addToGuesses(int guess){
+    public void setRandomlyGuessed(int n){
+        this.randomlyGuessed = n;
+    }
+
+    public void addToGuessesBefore(int guess){
         guessesBefore.add(guess);
     }
+
+    public boolean numberIsHigher(int guess){
+        return randomlyGuessed > guess;
+    }
+
+    public boolean iFoundTheNumber(int guess){
+        return randomlyGuessed == guess;
+    }
+
+
 
     public void setMin(int min){
         this.min = min;
@@ -28,7 +43,24 @@ public class Model {
         this.max = max;
     }
 
-    public String toString(){
+    public void setGuessFeedback(String higherLower){
+        numberILookFor = higherLower;
+    }
+
+
+
+    public int getMinBarrier(){
+        return min;
+    }
+
+    public int getMaxBarrier(){
+        return max;
+    }
+    public String getPreviosGuesses(){
         return guessesBefore.toString();
+    }
+
+    public String getGuessFeedback(){
+        return numberILookFor;
     }
 }
