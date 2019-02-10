@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Model {
     public static final int RAND_MAX = 100;
+    public static final int RAND_MIN = 0;
     private int min;
     private int max;
     private int randomlyGuessed;

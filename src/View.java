@@ -1,4 +1,5 @@
 public class View {
+    public static final String GREETING = "Computer has guessed a random number between ";
     public static final String INPUT_INT_DATA = "Input your guess as INT value: ";
     public static final String BIGGER = "The number you look for is larger!";
     public static final String SMALLER = "The number you look for is smaller!";
