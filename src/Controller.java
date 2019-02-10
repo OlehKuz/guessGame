@@ -12,6 +12,8 @@ public class Controller {
 
     public void playGame(){
         model.setRandomlyGuessed(model.rand());
+        model.setMin(Model.RAND_MIN);
+        model.setMax(Model.RAND_MAX);
         view.printMessage(View.GREETING + Model.RAND_MIN + View.AND + Model.RAND_MAX);
         playUntilGuessed();
 
@@ -43,13 +45,15 @@ public class Controller {
     }
 
     private void congratulate(){
-        view.printMessage(View.CONGRATULATE);//TO_DO
+        view.printMessage(View.CONGRATULATE + model.getLastGuess());//TO_DO
+        view.printMessage(View.GUESSES_SO_FAR + model.getPreviosGuesses());
     }
 
     private void showGameState(){
         view.printMessage(View.GUESSES_SO_FAR + model.getPreviosGuesses());
         view.printMessage(View.INTERVAL + model.getMinBarrier() + View.AND + model.getMaxBarrier());
         view.printMessage(View.PREVIOUS_GUESS + model.getLastGuess());
+        view.printMessage(model.getGuessFeedback());
     }
 
     private int getIntInRange(Scanner sc){// TO_DO
