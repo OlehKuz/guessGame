@@ -63,4 +63,8 @@ public class Model {
     public String getGuessFeedback(){
         return numberILookFor;
     }
+
+    public int getLastGuess(){
+        return guessesBefore.get(guessesBefore.size() - 1);
+    }
 }
