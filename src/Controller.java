@@ -1,7 +1,6 @@
+import java.util.Scanner;
+
 public class Controller {
-
-
-
 
     private Model model;
     private View view;
@@ -19,18 +18,58 @@ public class Controller {
     }
 
     private void playUntilGuessed(){
+        Scanner sc = new Scanner(System.in);
         while(true){
-            view.printMessage(View.INPUT_INT_DATA);
-            //get user input, game intervals, logic
+            int guess = getIntInRange(sc);
+            model.addToGuessesBefore(guess);
+            if(model.iFoundTheNumber(guess)){
+                congratulate();
+                break;
+            }
+            setNewInterval(guess);
             showGameState();
+        }
+        sc.close();
+    }
+
+    private void setNewInterval(int guess){
+        if(model.numberIsHigher(guess)){
+            model.setGuessFeedback(View.BIGGER);
+            model.setMin(guess);
+        }else{
+            model.setGuessFeedback(View.SMALLER);
+            model.setMax(guess);
         }
     }
 
+    private void congratulate(){
+        view.printMessage(View.CONGRATULATE);//TO_DO
+    }
 
     private void showGameState(){
         view.printMessage(View.GUESSES_SO_FAR + model.getPreviosGuesses());
         view.printMessage(View.INTERVAL + model.getMinBarrier() + View.AND + model.getMaxBarrier());
         view.printMessage(View.PREVIOUS_GUESS + model.getLastGuess());
+    }
+
+    private int getIntInRange(Scanner sc){// TO_DO
+        int res=0;
+        while( true ) {
+            view.printMessage(View.INPUT_INT_DATA);
+            // check int - value
+            while (!sc.hasNextInt()) {
+                view.printMessage(view.INPUT_INT_DATA);
+                sc.next();
+            }
+            // check value in diapason
+            if ((res = sc.nextInt()) <= model.getMinBarrier() ||
+                    res >= model.getMaxBarrier()) {
+                view.printMessage(View.INTERVAL + model.getMinBarrier() + View.AND + model.getMaxBarrier());
+                continue ;
+            }
+            break;
+        }
+        return res;
     }
 
 }
